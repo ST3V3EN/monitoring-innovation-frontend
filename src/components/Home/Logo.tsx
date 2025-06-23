@@ -1,4 +1,4 @@
-import LogoImage from '../assets/images/Imagologo_motion.svg';
+import LogoImage from '../../assets/images/Imagologo_motion.svg';
 
 function Logo() {
   return (

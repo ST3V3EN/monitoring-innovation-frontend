@@ -1,4 +1,4 @@
-import Imagen from '../assets/images/Telefono-01.png';
+import Imagen from '../../assets/images/Telefono-01.png';
 
 function Hero() {
   return (
