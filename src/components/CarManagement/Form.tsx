@@ -4,7 +4,7 @@ import type { Car } from '../../utils/car-helper.ts';
 
 import IconSucursal from '@assets/Icon_puntoubicacion1.svg';
 import IconSucursalG from '@assets/Icon_puntoubicacion.svg';
-import IconAspiranteG from '@assets//Icon_persona.svg';
+import IconAspiranteG from '@assets/Icon_persona.svg';
 import IconAspirante1 from '@assets/Icon_persona1.svg';
 import IconMarcaG from '@assets/Icon_vehiculo.svg';
 import IconMarca from '@assets/Icon_vehiculo1.svg';
@@ -13,13 +13,17 @@ import IconCheck from '@assets/Icon_confirmar.svg';
 import IconPlus from '@assets/Icon_crear.svg';
 import swal from 'sweetalert';
 
-function Form({ mode, setMode, setCars, currentCar }: {
+function Form({
+  mode,
+  setMode,
+  setCars,
+  currentCar,
+}: {
   mode: string;
   setMode: (mode: any) => void;
   setCars: (cars: Car[]) => void;
   currentCar: any;
 }) {
-
   const [marca, setMarca] = useState('');
   const [sucursal, setSucursal] = useState('');
   const [aspirante, setAspirante] = useState('');
@@ -28,7 +32,7 @@ function Form({ mode, setMode, setCars, currentCar }: {
     e.preventDefault();
     try {
       if (mode === 'add') {
-        let response = await createCar({ marca, sucursal, aspirante });
+        const response = await createCar({ marca, sucursal, aspirante });
         if (response.id) {
           swal({
             title: 'Éxito',
@@ -36,9 +40,9 @@ function Form({ mode, setMode, setCars, currentCar }: {
             icon: 'success',
             buttons: {
               confirm: {
-                className: 'swal-button-blue'
-              }
-            }
+                className: 'swal-button-blue',
+              },
+            },
           });
         }
       } else if (mode === 'edit' && currentCar) {
@@ -49,11 +53,12 @@ function Form({ mode, setMode, setCars, currentCar }: {
           icon: 'success',
           buttons: {
             confirm: {
-              className: 'swal-button-blue'
-            }
-          }
+              className: 'swal-button-blue',
+            },
+          },
         });
       }
+
       handleClean();
       const updated = await getAllCars();
       setCars(updated);
@@ -67,7 +72,7 @@ function Form({ mode, setMode, setCars, currentCar }: {
     setSucursal('');
     setAspirante('');
     setMode('default');
-  }
+  };
 
   useEffect(() => {
     if (mode === 'edit' && currentCar) {
@@ -80,49 +85,71 @@ function Form({ mode, setMode, setCars, currentCar }: {
   return (
     <div className={`form-car ${mode !== 'default' ? 'expanded' : 'default'}`}>
       <form onSubmit={handleSubmit}>
-        <button
-          type="button"
-          className="add-button"
-          onClick={() => setMode('add')}
-        >
+        <button type="button" className="add-button" onClick={() => setMode('add')}>
           <img src={IconPlus} alt="Agregar" />
         </button>
 
         <div className="form-group">
           <img src={mode === 'default' ? IconMarcaG : IconMarca} alt="Marca" className="form-icon" />
-          <input type="text" name="marca" placeholder="Marca" value={marca} onChange={(e) => setMarca(e.target.value)} />
+          <input
+            type="text"
+            name="marca"
+            placeholder="Marca"
+            value={marca}
+            onChange={(e) => setMarca(e.target.value)}
+          />
         </div>
 
         <div className="form-group">
           <img src={mode === 'default' ? IconSucursalG : IconSucursal} alt="Sucursal" className="form-icon" />
-          <input type="text" name="sucursal" placeholder="Sucursal" value={sucursal} onChange={(e) => setSucursal(e.target.value)} />
+          <input
+            type="text"
+            name="sucursal"
+            placeholder="Sucursal"
+            value={sucursal}
+            onChange={(e) => setSucursal(e.target.value)}
+          />
         </div>
 
         <div className="form-group">
           <img src={mode === 'default' ? IconAspiranteG : IconAspirante1} alt="Aspirante" className="form-icon" />
-          <input type="text" name="aspirante" placeholder="Aspirante" value={aspirante} onChange={(e) => setAspirante(e.target.value)} />
+          <input
+            type="text"
+            name="aspirante"
+            placeholder="Aspirante"
+            value={aspirante}
+            onChange={(e) => setAspirante(e.target.value)}
+          />
         </div>
 
-        {mode === 'add' && (
+        {/* Botones con animación */}
+        <div className={`form-buttons-container ${mode === 'add' || mode === 'edit' ? 'visible' : ''}`}>
           <div className="form-buttons">
-            <button className="form-cancel" type="button" onClick={() => handleClean()}>Cancelar</button>
-            <button className="form-create" type="submit">Crear</button>
+            {mode === 'add' && (
+              <>
+                <button className="form-cancel" type="button" onClick={handleClean}>
+                  Cancelar
+                </button>
+                <button className="form-create" type="submit">
+                  Crear
+                </button>
+              </>
+            )}
+            {mode === 'edit' && (
+              <>
+                <button className="form-edit" type="button" onClick={handleClean}>
+                  <img src={IconCancel} />
+                </button>
+                <button className="form-edit" type="submit">
+                  <img src={IconCheck} />
+                </button>
+              </>
+            )}
           </div>
-        )}
-
-        {mode === 'edit' && (
-          <div className="form-buttons">
-            <button className="form-edit" type="button" onClick={() => handleClean()}>
-              <img src={IconCancel} />
-            </button>
-            <button className="form-edit" type="submit">
-              <img src={IconCheck} />
-            </button>
-          </div>
-        )}
+        </div>
       </form>
     </div>
   );
 }
 
-export default Form;
+export default Form;
