@@ -1,5 +1,5 @@
 import api from './AxiosConfig';
-import type { Car } from '../utils/car-helper';
+import type { Car } from '../utils/CarHelper';
 
 export const getAllCars = async (skip = 0, limit = 10): Promise<Car[]> => {
   try {

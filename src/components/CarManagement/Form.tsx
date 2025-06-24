@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createCar, getAllCars, updateCar } from '../../services/CarManagement';
-import type { Car } from '../../utils/car-helper.ts';
+import type { Car } from '../../utils/CarHelper.ts';
 
 import IconSucursal from '../../assets/images/Icon_puntoubicacion1.svg';
 import IconSucursalG from '../../assets/images/Icon_puntoubicacion.svg';

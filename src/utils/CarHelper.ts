@@ -1,4 +1,4 @@
-export interface Car {
+export type Car = {
     id?: number;
     marca?: string;
     sucursal?: string;

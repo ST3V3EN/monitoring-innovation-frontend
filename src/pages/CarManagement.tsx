@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Form from '../components/CarManagement/Form';
 import Table from '../components/CarManagement/Table';
 import Footer from '../components/CarManagement/Footer';
-import type { Car } from '../utils/car-helper.ts';
+import type { Car } from '../utils/CarHelper.ts';
 import '../styles/CarManagement.css';
 import { getAllCars } from '../services/CarManagement';
 

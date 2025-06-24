@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getAllCars, getCarById, deleteCar } from '../../services/CarManagement';
-import type { Car } from '../../utils/car-helper.ts';
+import type { Car } from '../../utils/CarHelper.ts';
 import swal from 'sweetalert';
 
 import IconEditar from '../../assets/images/Icon_editar1.svg';
