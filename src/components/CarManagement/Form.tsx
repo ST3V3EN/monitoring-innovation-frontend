@@ -2,15 +2,15 @@ import { useState, useEffect } from 'react';
 import { createCar, getAllCars, updateCar } from '../../services/CarManagement';
 import type { Car } from '../../utils/car-helper.ts';
 
-import IconSucursal from '@assets/Icon_puntoubicacion1.svg';
-import IconSucursalG from '@assets/Icon_puntoubicacion.svg';
-import IconAspiranteG from '@assets/Icon_persona.svg';
-import IconAspirante1 from '@assets/Icon_persona1.svg';
-import IconMarcaG from '@assets/Icon_vehiculo.svg';
-import IconMarca from '@assets/Icon_vehiculo1.svg';
-import IconCancel from '@assets/Icon_cancelar.svg';
-import IconCheck from '@assets/Icon_confirmar.svg';
-import IconPlus from '@assets/Icon_crear.svg';
+import IconSucursal from '../../assets/images/Icon_puntoubicacion1.svg';
+import IconSucursalG from '../../assets/images/Icon_puntoubicacion.svg';
+import IconAspiranteG from '../../assets/images/Icon_persona.svg';
+import IconAspirante1 from '../../assets/images/Icon_persona1.svg';
+import IconMarcaG from '../../assets/images/Icon_vehiculo.svg';
+import IconMarca from '../../assets/images/Icon_vehiculo1.svg';
+import IconCancel from '../../assets/images/Icon_cancelar.svg';
+import IconCheck from '../../assets/images/Icon_confirmar.svg';
+import IconPlus from '../../assets/images/Icon_crear.svg';
 import swal from 'sweetalert';
 
 function Form({
@@ -122,7 +122,6 @@ function Form({
           />
         </div>
 
-        {/* Botones con animación */}
         <div className={`form-buttons-container ${mode === 'add' || mode === 'edit' ? 'visible' : ''}`}>
           <div className="form-buttons">
             {mode === 'add' && (

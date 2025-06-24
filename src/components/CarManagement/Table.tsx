@@ -3,10 +3,10 @@ import { getAllCars, getCarById, deleteCar } from '../../services/CarManagement'
 import type { Car } from '../../utils/car-helper.ts';
 import swal from 'sweetalert';
 
-import IconEditar from '@assets/Icon_editar1.svg';
-import IconDelete from '@assets/Icon_eliminar1.svg';
-import IconEditarG from '@assets/Icon_editar.svg';
-import IconDeleteG from '@assets/Icon_eliminar.svg';
+import IconEditar from '../../assets/images/Icon_editar1.svg';
+import IconDelete from '../../assets/images/Icon_eliminar1.svg';
+import IconEditarG from '../../assets/images/Icon_editar.svg';
+import IconDeleteG from '../../assets/images/Icon_eliminar.svg';
 
 function Table({
   mode,
