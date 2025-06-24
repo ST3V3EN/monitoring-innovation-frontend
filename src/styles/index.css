@@ -14,19 +14,16 @@ body {
   }
   
   .page-wrapper {
-    /* Ya tienes estas */
     scroll-behavior: smooth;
     overflow-x: hidden;
     overflow-y: scroll;
     height: 100vh;
     scroll-snap-type: y mandatory;
   
-    /* 👇 Esto oculta solo la barra visual */
-    scrollbar-width: none;       /* Firefox */
+    scrollbar-width: none; 
     -ms-overflow-style: none;
   }
   
-  /* 👇 Chrome, Edge moderno, Safari */
   .page-wrapper::-webkit-scrollbar {
     display: none;
   }
