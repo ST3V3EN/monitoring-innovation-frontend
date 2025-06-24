@@ -1,31 +1,73 @@
 import { useState, useEffect } from 'react';
 import { createCar, getAllCars, updateCar } from '../../services/CarManagement';
-import type { Car } from '../../services/CarManagement';
+import type { Car } from '../../utils/car-helper.ts';
 
-import IconPlus from '../../assets/images/Icon_crear.svg';
-import IconMarcaG from '../../assets/images/Icon_vehiculo.svg';
-import IconSucursalG from '../../assets/images/Icon_puntoubicacion.svg';
-import IconAspiranteG from '../../assets/images/Icon_persona.svg';
-import IconMarca from '../../assets/images/Icon_vehiculo1.svg';
-import IconSucursal from '../../assets/images/Icon_puntoubicacion1.svg';
-import IconAspirante1 from '../../assets/images/Icon_persona1.svg';
-import IconCancel from '../../assets/images/Icon_cancelar.svg';
-import IconCheck from '../../assets/images/Icon_confirmar.svg';
+import IconSucursal from '@assets/Icon_puntoubicacion1.svg';
+import IconSucursalG from '@assets/Icon_puntoubicacion.svg';
+import IconAspiranteG from '@assets//Icon_persona.svg';
+import IconAspirante1 from '@assets/Icon_persona1.svg';
+import IconMarcaG from '@assets/Icon_vehiculo.svg';
+import IconMarca from '@assets/Icon_vehiculo1.svg';
+import IconCancel from '@assets/Icon_cancelar.svg';
+import IconCheck from '@assets/Icon_confirmar.svg';
+import IconPlus from '@assets/Icon_crear.svg';
+import swal from 'sweetalert';
 
-function Form({
-  mode,
-  setMode,
-  setCars,
-  currentCar,
-}: {
+function Form({ mode, setMode, setCars, currentCar }: {
   mode: string;
   setMode: (mode: any) => void;
   setCars: (cars: Car[]) => void;
-  currentCar: Car | null;
+  currentCar: any;
 }) {
+
   const [marca, setMarca] = useState('');
   const [sucursal, setSucursal] = useState('');
   const [aspirante, setAspirante] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      if (mode === 'add') {
+        let response = await createCar({ marca, sucursal, aspirante });
+        if (response.id) {
+          swal({
+            title: 'Éxito',
+            text: 'El carro ha sido creado correctamente.',
+            icon: 'success',
+            buttons: {
+              confirm: {
+                className: 'swal-button-blue'
+              }
+            }
+          });
+        }
+      } else if (mode === 'edit' && currentCar) {
+        await updateCar(currentCar.id, { marca, sucursal, aspirante });
+        swal({
+          title: 'Éxito',
+          text: 'El carro ha sido actualizado correctamente.',
+          icon: 'success',
+          buttons: {
+            confirm: {
+              className: 'swal-button-blue'
+            }
+          }
+        });
+      }
+      handleClean();
+      const updated = await getAllCars();
+      setCars(updated);
+    } catch (error) {
+      console.error('Error al procesar el carro:', error);
+    }
+  };
+
+  const handleClean = () => {
+    setMarca('');
+    setSucursal('');
+    setAspirante('');
+    setMode('default');
+  }
 
   useEffect(() => {
     if (mode === 'edit' && currentCar) {
@@ -34,30 +76,6 @@ function Form({
       setAspirante(currentCar.aspirante);
     }
   }, [mode, currentCar]);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    try {
-      if (mode === 'add') {
-        await createCar({ marca, sucursal, aspirante });
-      } else if (mode === 'edit' && currentCar) {
-        await updateCar(currentCar.id, { marca, sucursal, aspirante });
-      }
-
-      // Limpieza
-      setMarca('');
-      setSucursal('');
-      setAspirante('');
-      setMode('default');
-
-      // Actualizar tabla
-      const updated = await getAllCars();
-      setCars(updated);
-    } catch (error) {
-      console.error('Error al procesar el carro:', error);
-    }
-  };
 
   return (
     <div className={`form-car ${mode !== 'default' ? 'expanded' : 'default'}`}>
@@ -87,14 +105,14 @@ function Form({
 
         {mode === 'add' && (
           <div className="form-buttons">
-            <button className="form-cancel" type="button" onClick={() => setMode('default')}>Cancelar</button>
+            <button className="form-cancel" type="button" onClick={() => handleClean()}>Cancelar</button>
             <button className="form-create" type="submit">Crear</button>
           </div>
         )}
 
         {mode === 'edit' && (
           <div className="form-buttons">
-            <button className="form-edit" type="button" onClick={() => setMode('default')}>
+            <button className="form-edit" type="button" onClick={() => handleClean()}>
               <img src={IconCancel} />
             </button>
             <button className="form-edit" type="submit">
@@ -107,4 +125,4 @@ function Form({
   );
 }
 
-export default Form;
+export default Form;

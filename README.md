@@ -1,54 +1,73 @@
-# React + TypeScript + Vite
+# Monitoring Innovation Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación frontend desarrollada como parte de una *prueba técnica* para la empresa *Monitoring Innovation (AB COMERCIAL)*. 
 
-Currently, two official plugins are available:
+## Descripción
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+La aplicación permite la gestión de vehículos y usuarios, proporcionando una interfaz moderna. Está construida utilizando *React* y *Vite*, con TypeScript para asegurar la calidad y mantenibilidad del código. El diseño incluye componentes reutilizables y estilos personalizados.
 
-## Expanding the ESLint configuration
+## Características principales
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Gestión de vehículos (crear, editar, eliminar, listar)
+- Gestión de usuarios
+- Interfaz intuitiva y moderna
+- Consumo de servicios mediante Axios
+- Estructura modular de componentes
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Estructura del proyecto
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+monitoring-innovation-frontend/
+├── src/
+│   ├── components/
+│   │   ├── CarManagement/
+│   │   └── Home/
+│   ├── pages/
+│   ├── services/
+│   ├── styles/
+│   └── utils/
+├── public/
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── ...
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+
+## Instalación y ejecución
+
+1. Clona el repositorio:
+   sh
+   git clone <url-del-repositorio>
+   
+2. Instala las dependencias:
+   sh
+   npm install
+   
+3. Inicia la aplicación en modo desarrollo:
+   sh
+   npm run dev
+   
+
+La aplicación estará disponible en http://localhost:5173 (o el puerto configurado por Vite).
+
+## Scripts disponibles
+
+- npm run dev: Inicia el servidor de desarrollo
+- npm run build: Genera la build de producción
+- npm run preview: Previsualiza la build de producción
+
+## Tecnologías utilizadas
+
+- React
+- TypeScript
+- Vite
+- Axios
+- CSS Modules
+
+## Notas
+
+Este proyecto fue realizado como parte de una *prueba técnica* para *Monitoring Innovation*. El código está estructurado para facilitar su mantenimiento y escalabilidad.
+
+---
+
+Desarrollado por: Brayan Steven Moreno Garcia
